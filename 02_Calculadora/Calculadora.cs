@@ -14,7 +14,19 @@ namespace Calculadora{
             Console.WriteLine("0-Sair \n ");
 
             Console.WriteLine("Digite o número:");
-            string entradaOperacao = Console.ReadLine();
+            
+
+            while (true)
+            {
+                string entradaOperacao = Console.ReadLine();
+                if (entradaOperacao=="1"){
+                    Console.WriteLine("show");
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
     }
 }
