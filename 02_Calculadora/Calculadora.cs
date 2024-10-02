@@ -5,6 +5,23 @@ namespace Calculadora{
         static void Main(){
             Programa();
         }
+        public static int ConferirNumero(string mensagem)
+        {
+            while (true)
+            {
+                Console.WriteLine(mensagem);
+                string valorDigitado = Console.ReadLine();
+
+                if (int.TryParse(valorDigitado, out int numero))
+                {
+                    return numero;
+                }
+                else
+                {
+                    Console.WriteLine("Digite um número inteiro!");
+                }
+            }
+        }
         static void Programa(){
             Console.WriteLine("Digite o número correspondente com a operação que deseja realizar");
             Console.WriteLine("1-Soma");
@@ -13,28 +30,39 @@ namespace Calculadora{
             Console.WriteLine("4-Divisão");
             Console.WriteLine("0-Sair \n ");
 
-            Console.WriteLine("Digite o número:");
            
+            string[] numerosValidos = { "1" , "2" , "3" , "4"};
+            double resultado = 0;
 
             while (true)
             {
+                Console.WriteLine("Digite o número:");
                 string entradaOperacao = Console.ReadLine();
-
-                if (entradaOperacao=="1")//Soma
+                
+                if (numerosValidos.Contains(entradaOperacao))
                 {
-                    Console.WriteLine("Operação: Somar\n");
-                }
-                else if (entradaOperacao=="2")//Subtração
-                {
-                    Console.WriteLine("Operação: Subtrair\n");
-                }
-                else if (entradaOperacao=="3")//Multiplicação
-                {
-                    Console.WriteLine("Operação: Multiplicar\n");
-                }
-                else if (entradaOperacao=="4")//Divisão
-                {
-                    Console.WriteLine("Operação: Dividir\n");
+                    int valor1 = ConferirNumero("Digite o 1º Valor: ");
+                    int valor2 = ConferirNumero("Digite o 2º Valor: ");
+                    
+                    if (entradaOperacao=="1")//Soma
+                    {
+                        Console.WriteLine("Operação: Somar");
+                        resultado = valor1+valor2;
+                    }
+                    else if (entradaOperacao=="2")//Subtração
+                    {
+                        Console.WriteLine("Operação: Subtrair");
+                        resultado = valor1-valor2;
+                    }
+                    else if (entradaOperacao=="3")//Multiplicação
+                    {
+                        Console.WriteLine("Operação: Multiplicar\n");
+                    }
+                    else if (entradaOperacao=="4")//Divisão
+                    {
+                        Console.WriteLine("Operação: Dividir\n");
+                    }
+                    Console.WriteLine("Resultado: "+resultado);
                 }
                 else if (entradaOperacao=="0")//Sair
                 {
@@ -45,7 +73,9 @@ namespace Calculadora{
                 {
                     Console.WriteLine("Valor digitado inválido, coloque novamente: ");
                 }
+                
             }
+            
         }
     }
 }
