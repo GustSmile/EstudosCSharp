@@ -31,7 +31,7 @@ namespace Calculadora{
             Console.WriteLine("0-Sair \n ");
 
            
-            string[] numerosValidos = { "1" , "2" , "3" , "4"};
+            string[] numerosValidos = { "1" , "2" , "3" , "4" , "5" , "6" };
             double resultado = 0;
 
             while (true)
@@ -68,6 +68,25 @@ namespace Calculadora{
                             resultado = 0;
                         }else{
                             resultado = valor1/valor2;
+                        }
+                    }
+                    else if (entradaOperacao=="5")//RestoDivisão
+                    {
+                        Console.WriteLine("Operação: Resto da Divisão");
+
+                        if (valor2==0){
+                            Console.WriteLine("Não é possível dividir por zero!");
+                            resultado = 0;
+                        }else{
+                            resultado = valor1%valor2;
+                        }
+                    }
+                    else if (entradaOperacao=="6")//Potência
+                    {
+                        Console.WriteLine("Operação: Resto da Divisão");
+                        resultado=1;
+                        for (int i=0;i<valor2;i++){
+                            resultado = resultado*valor1;
                         }
                     }
                     Console.WriteLine("Resultado: "+resultado.ToString("F2"));
