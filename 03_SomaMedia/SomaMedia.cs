@@ -8,7 +8,8 @@ namespace SomaMedia{
             int tamanhoVetor = TamanhoVetor("Quantos números deseja informar? ");
             Console.WriteLine($"Valor retornado: {tamanhoVetor}\n");
             List<double> Numeros = AddNumeros(tamanhoVetor);
-            Numeros.ForEach(numero => Console.WriteLine(numero));
+            ImprimeNumeros(Numeros);
+            CalculoMedia(Numeros, tamanhoVetor);
         }
 
         public static int TamanhoVetor(string mensagem)
@@ -40,9 +41,10 @@ namespace SomaMedia{
         public static double ConferirNumero(string mensagem)
         {
             Console.WriteLine(mensagem);
-            string valorDigitado = Console.ReadLine();
-            Console.WriteLine();
+            
             while(true){
+                string valorDigitado = Console.ReadLine();
+                Console.WriteLine();
                 if (double.TryParse(valorDigitado, out double numero))
                 {
                     return numero; //Caso Valor Válido
@@ -61,10 +63,29 @@ namespace SomaMedia{
             List<double> Numeros = new List<double>();
 
             for (int i=0;i<quant;i++){
-                double numero = ConferirNumero($"Adicione o número {i}º: ");
+                double numero = ConferirNumero($"Adicione o número {i+1}º: ");
                 Numeros.Add(numero);
             }
             return Numeros;
+        }
+
+        public static void ImprimeNumeros(List<double> Numeros)
+        {
+            foreach(double numero in Numeros)
+            {
+                Console.WriteLine(numero);
+            }
+        }
+
+        public static void CalculoMedia(List<double>Numeros, int quant)
+        {
+            double total = 0;
+            foreach(double numero in Numeros)
+            {
+                total+=numero;
+            }
+            double media = total/quant;
+            Console.WriteLine($"\nO resultado da média é {media}");
         }
     }
 }
